@@ -1,0 +1,42 @@
+syntax = "proto3";
+package fournisseur;
+
+// Définition du message fournisseur
+message fournisseur {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+}
+
+// Définition des messages de requête et de réponse pour les méthodes d
+message GetfournisseurRequest {
+    string fournisseur_id = 1;
+}
+
+message GetfournisseurResponse {
+    fournisseur fournisseur = 1;
+}
+
+message SearchfournisseurRequest {
+    string query = 1;
+}
+
+message SearchfournisseurResponse {
+    repeated fournisseur fournisseur = 1;
+}
+
+message CreatefournisseurRequest {
+  string title = 1;
+  string description = 2;
+}
+
+message CreatefournisseurResponse {
+  fournisseur fournisseur = 1;
+}
+
+// Définition du service de films
+service fournisseurService {
+    rpc Getfournisseur(GetfournisseurRequest) returns (GetfournisseurResponse);
+    rpc Searchfournisseur(SearchfournisseurRequest) returns (SearchfournisseurResponse);
+    rpc Createfournisseur(CreatefournisseurRequest) returns (CreatefournisseurResponse);
+}

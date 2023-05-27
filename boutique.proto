@@ -1,0 +1,43 @@
+syntax = "proto3";
+package boutique;
+
+// Définition du message boutique show
+message boutique {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+// Ajouter d'autres champs de données pour les séries boutique au besoin
+}
+
+// Définition des messages de requête et de réponse pour les méthodes
+message GetboutiqueRequest {
+    string boutique_id = 1;
+}
+
+message GetboutiqueResponse {
+    boutique boutique = 1;
+}
+
+message SearchboutiquesRequest {
+    string query = 1;
+}
+
+message SearchboutiquesResponse {
+    repeated boutique boutiques = 1;
+}
+
+message CreateboutiqueRequest {
+  string title = 1;
+  string description = 2;
+}
+
+message CreateboutiqueResponse {
+  boutique boutique = 1;
+}
+
+// Définition du service de séries boutique
+service boutiqueService {
+    rpc Getboutique(GetboutiqueRequest) returns (GetboutiqueResponse);
+    rpc Searchboutiques(SearchboutiquesRequest) returns (SearchboutiquesResponse);
+    rpc Createboutique(CreateboutiqueRequest) returns (CreateboutiqueResponse);
+}
